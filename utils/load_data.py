@@ -20,8 +20,8 @@ def load_results():
 def load_laps(grand_prix: str, selected_drivers: list):
     laps = pd.read_csv("data/laps.csv")
     
-    is_selected_gp = laps[laps["Location"] == grand_prix]
-    is_selected_drivers = laps[laps["Abbreviation"].isin(selected_drivers)]
+    is_selected_gp = laps["Location"] == grand_prix
+    is_selected_drivers = laps["Driver"].isin(selected_drivers)
 
     laps = laps[is_selected_gp & is_selected_drivers]
 
