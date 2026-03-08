@@ -30,6 +30,7 @@ with st.sidebar:
     )
 
 event_name = events[events["Location"] == grand_prix]["OfficialEventName"].values[0]
+laps = load_laps(grand_prix, selected_drivers)
 
 st.title(f"🏁 {event_name}")
 
@@ -40,7 +41,24 @@ st.markdown("## 🏆 Podium")
 podium = st.columns(3)
 
 driver_pos = [row["Abbreviation"] for _, row in top_drivers[top_drivers["Location"] == grand_prix].iterrows()]
+driver_data = [
+    results[results["Abbreviation"] == driver]["Points"].tolist()
+    for driver in driver_pos
+]
 
-podium[0].metric("🥈 2nd Position", driver_pos[1], "18 Points", border=True, chart_type = "bar")
-podium[1].metric("🏆 1st Position", driver_pos[0], "25 Points", border=True, chart_type = "bar")
-podium[2].metric("🥉 3rd Position", driver_pos[2], "15 Points", border=True, chart_type = "bar")
+podium[0].metric("🥈 2nd Position", driver_pos[1], "18 Points", chart_data = driver_data[1], border=True, chart_type = "bar")
+podium[1].metric("🏆 1st Position", driver_pos[0], "25 Points", chart_data = driver_data[0], border=True, chart_type = "bar")
+podium[2].metric("🥉 3rd Position", driver_pos[2], "15 Points", chart_data = driver_data[2], border=True, chart_type = "bar")
+
+st.markdown("## Position Change during Race")
+
+fig = px.line(
+    laps, x = "LapNumber", y = "Position", 
+    color = "Driver", color_discrete_map = driver_colors, 
+    line_dash = "Driver", line_dash_map = driver_linestyles,
+    markers = "o"
+)
+
+fig.update_yaxes(range = [20.5, 0.5])
+
+st.plotly_chart(fig)
