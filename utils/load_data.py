@@ -28,10 +28,10 @@ def load_laps(grand_prix: str, selected_drivers: list):
     return laps
 
 
-def load_speed_stat():
+def load_speed_stat(grand_prix: str):
     speed_stat = pd.read_csv("data/max_speed_stat.csv")
     speed_stat = pd.pivot_table(
-        speed_stat,
+        speed_stat[speed_stat["Location"] == grand_prix].drop("Location", axis = 1),
         index = "Driver", columns = ["Rank"],
         aggfunc = "max"
     )
