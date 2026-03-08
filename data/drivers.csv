@@ -1,0 +1,22 @@
+Driver,Abbreviation,TeamName,TeamColor,linestyle
+1,VER,Red Bull Racing,#3671C6,-
+10,GAS,Alpine,#0093CC,-
+12,ANT,Mercedes,#27F4D2,-
+14,ALO,Aston Martin,#229971,-
+16,LEC,Ferrari,#E80020,-
+18,STR,Aston Martin,#229971,--
+22,TSU,Red Bull Racing,#3671C6,--
+23,ALB,Williams,#64C4FF,-
+27,HUL,Kick Sauber,#52E252,-
+30,LAW,Red Bull Racing,#3671C6,--
+31,OCO,Haas F1 Team,#B6BABD,-
+4,NOR,McLaren,#FF8000,-
+43,COL,Alpine,#0093CC,--
+44,HAM,Ferrari,#E80020,--
+5,BOR,Kick Sauber,#52E252,--
+55,SAI,Williams,#64C4FF,--
+6,HAD,Racing Bulls,#6692FF,-
+63,RUS,Mercedes,#27F4D2,--
+7,DOO,Alpine,#0093CC,--
+81,PIA,McLaren,#FF8000,--
+87,BEA,Haas F1 Team,#B6BABD,--
