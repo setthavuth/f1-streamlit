@@ -6,7 +6,7 @@ import pandas as pd
 import streamlit as st
 import seaborn as sns
 import plotly.express as px
-from utils.load_data import load_events, load_drivers, load_results, load_laps
+from utils.load_data import load_events, load_drivers, load_results, load_laps, load_speed_stat
 
 st.set_page_config(layout = "wide")
 
@@ -62,3 +62,12 @@ fig = px.line(
 fig.update_yaxes(range = [20.5, 0.5])
 
 st.plotly_chart(fig)
+
+speed_stat = load_speed_stat(grand_prix)
+
+driver_dict = {row["Driver"]: row["Abbreviation"] for _, row in drivers.iterrows()}
+abbreviations = [driver_dict[number] for number in speed_stat.index]
+
+fig = px.imshow(speed_stat, y = abbreviations, text_auto = True, aspect="auto", title = "Race - Top Speed (km/h) for Each Lap")
+fig.update_xaxes(showticklabels = False)
+st.plotly_chart(fig, theme = None)
