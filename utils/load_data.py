@@ -29,4 +29,11 @@ def load_laps(grand_prix: str, selected_drivers: list):
 
 
 def load_speed_stat():
-    pass
+    speed_stat = pd.read_csv("data/max_speed_stat.csv")
+    speed_stat = pd.pivot_table(
+        speed_stat,
+        index = "Driver", columns = ["Rank"],
+        aggfunc = "max"
+    )
+
+    return speed_stat
